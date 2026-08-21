@@ -1,0 +1,29 @@
+# Environment and utilities
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tools
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Project artifacts 
+mlruns/
+models/
+data/
+*.pt
+*.safetensors
+outputs/
+
+# Local environment
+.env
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/

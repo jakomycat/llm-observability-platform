@@ -1,0 +1,80 @@
+[project]
+name = "llm-observability"
+version = "0.1.0"
+description = "Observability and interpretability platform for Transformers models"
+readme = "README.md"
+authors = [
+    { name = "Jacobo Chalarca Vásquez", email = "jchalarcav@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.1",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.4",
+]
+
+# Ruff
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", # style (pycodestyle)
+    "F", # real errors (pyflakes)
+    "I", # import order (isort)
+    "N", # names (PEP 8)
+    "UP", # modern syntax (pyupgrade)
+    "B", # common bugs
+    "C4", # comprehensions
+    "SIM", # simplifications
+    "ANN", # obligatory annotations
+    "D", # docstrings
+    "RUF",
+]
+ignore = ["D107", "D203", "D213", "ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D", "ANN"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# Mypy
+[tool.mypy]
+python_version = "3.12"
+files = ["src", "tests"]
+strict = true
+warn_unreachable = true
+show_error_codes = true
+pretty = true
+
+[[tool.mypy.overrides]]
+module = ["transformers.*", "mlflow.*", "torch.*"]
+ignore_missing_imports = true
+
+# PyTest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config --cov=llm_observability --cov-report=term-missing"
+markers = [
+    "slow: slow tests (if it load real models)",
+    "integration: tests that depend on external services",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
