@@ -1,2 +1,3 @@
-def hello() -> str:
-    return "Hello from llm-observability!"
+"""Obesrvability and interpretabilty platform for Transformer models."""
+
+__version__ = "0.1.0"
