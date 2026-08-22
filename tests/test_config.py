@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 import pytest
@@ -6,16 +5,6 @@ from pydantic import ValidationError
 
 from llm_observability.core.config import Settings, get_settings
 from llm_observability.core.exceptions import ConfigurationError
-
-
-@pytest.fixture(autouse=True)
-def _isolated_env(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    """Give each test a clean environment and an empty working directory."""
-    for key in list(os.environ):
-        if key.startswith("LLMOBS_"):
-            monkeypatch.delenv(key, raising=False)
-    monkeypatch.chdir(tmp_path)
-    get_settings.cache_clear()
 
 
 def test_defaults_are_sane() -> None:
