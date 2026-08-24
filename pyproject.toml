@@ -8,8 +8,10 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "numpy>=2.5.2",
     "pydantic-settings>=2.15.0",
     "structlog>=26.1.0",
+    "torch>=2.13.0",
 ]
 
 [build-system]
