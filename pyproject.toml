@@ -12,6 +12,7 @@ dependencies = [
     "pydantic-settings>=2.15.0",
     "structlog>=26.1.0",
     "torch>=2.13.0",
+    "transformers>=5.15.1",
 ]
 
 [build-system]
@@ -47,7 +48,7 @@ select = [
     "D", # docstrings
     "RUF",
 ]
-ignore = ["D107", "D203", "D213", "ANN401"]
+ignore = ["D107", "D203", "D213", "ANN401", "D105"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["D", "ANN"]
