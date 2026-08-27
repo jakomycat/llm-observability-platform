@@ -74,11 +74,11 @@ class ModelRunner:
         if device is None:
             device = settings.device
 
-        set_seed(settings.seed)
-
         self._settings: Settings = settings
         self._model_name: str = model_name
         self._device: torch.device = resolve_device(device)
+
+        set_seed(settings.seed)
 
         self._model: PreTrainedModel | None = None
         self._tokenizer: PreTrainedTokenizerBase | None = None
